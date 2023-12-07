@@ -14,19 +14,20 @@ const serve_statics = async (pathname: string): Promise<Response> => {
   console.log('serving static file', pathname)
   try {
     let path = relative_path + pathname
-    let file = await Deno.open(path, { read: true })
-    if (file.statSync().isDirectory) { // 路径是一个文件夹时，指向文件夹中的 index.html
+    const file_stat = await Deno.stat(path)
+    if (file_stat.isDirectory) { // deno deploy 不支持读文件夹，会报错
       if (path.at(-1) != '/')
         path += '/'
-      file = await Deno.open(path + 'index.html', { read: true }) 
+      path += 'index.html' // 对文件夹的请求都转成对文件夹下 index.html 文件的请求
     }
+    const file = await Deno.open(path, { read: true })
     return new Response(file.readable)
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
       if (pathname.includes('.')) { // 判定为非页面请求
         console.log(`static file named '${pathname}' is not found`)
         return new Response('Not Found', { status: 404 })
-      } else {
+      } else { // 如果请求的是页面，则全返回根页面
         const file = await Deno.open(relative_path + '/index.html')
         return new Response(file.readable)
       }
