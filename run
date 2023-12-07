@@ -1,1 +1,1 @@
-deno run --allow-net ./server/main.ts
+deno run --allow-read --allow-net ./server/main.ts
