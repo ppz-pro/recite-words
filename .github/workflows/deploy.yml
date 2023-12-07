@@ -33,5 +33,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "ppz"
-          entrypoint: "server/main.js"
+          entrypoint: "server/main.ts"
           root: "." # 📝 Update the root if necessary
