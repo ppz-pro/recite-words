@@ -32,5 +32,5 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "ppz"
+          project: "recite-words"
           entrypoint: "server/main.ts"

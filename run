@@ -1,1 +1,3 @@
+#!$SHELL
+
 deno run --allow-read --allow-net ./server/main.ts
