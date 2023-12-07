@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node ./build/index.js"
+    "dev": "node ./build/index.js DEVELOPMENT",
+    "pro": "node ./build/index.js PRODUCTION"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -13,7 +13,20 @@ async function main() {
     jsxFactory: 'jsx', // 哪个变量
   })
 
-  await ctx.watch()
+  const mode = process.argv[2]
+  switch (mode) {
+    case 'DEVELOPMENT':
+      console.log('dev mode')
+      await ctx.watch()
+      break
+    case 'PRODUCTION':
+      console.log('pro mode')
+      await ctx.rebuild()
+      ctx.dispose()
+      break
+    default:
+      throw Error(`wrong mode '${mode}'`)
+  }
 }
 
 main()
