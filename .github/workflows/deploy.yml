@@ -27,7 +27,7 @@ jobs:
           node-version: lts/*
 
       - name: Build step
-        run: "cd client && npm install && npm run pro && rm -rf node_modules"
+        run: "cd client && npm install -g pnpm && pnpm install && npm run pro && rm -rf node_modules && cd .."
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
