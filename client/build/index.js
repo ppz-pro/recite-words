@@ -2,7 +2,7 @@ const { context } = require('esbuild')
 
 async function main() {
   const ctx = await context({
-    entryPoints: ['src/index.jsx'],
+    entryPoints: ['src/main.tsx'],
     bundle: true,
     outfile: 'public/bundled/index.js',
     sourcemap: true,
