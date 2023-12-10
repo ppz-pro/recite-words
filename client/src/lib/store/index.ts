@@ -3,7 +3,8 @@ import { useSyncExternalStore } from 'react'
 type Listener = () => void
 
 export
-const Store = <Val>(val: Val) => {
+const Store = <True_val>(val: True_val | null) => {
+  type Val = True_val | null
   const listeners: Listener[] = []
   const subscribe = (listener: Listener) => {
     listeners.push(listener)
