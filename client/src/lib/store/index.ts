@@ -11,19 +11,20 @@ const Store = <Val>(val: Val) => {
       listeners.splice(listeners.indexOf(listener), 1)
   }
 
-  const set = (calc_val: () => Val) => {
-    const new_val = calc_val()
+  const set = (calc_val: (old: Val) => Val) => {
+    val = calc_val(val)
     for (const l of listeners)
       l()
-    val = new_val
   }
   const get = () => val
 
   const useVal = () => useSyncExternalStore<Val>(subscribe, get)
   return  {
+    get,
+    set,
     useVal,
     useSet: () => set,
-    set,
+    subscribe,
     useState: () => [
       useVal(),
       set,
