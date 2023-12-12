@@ -1,4 +1,7 @@
 import { Store } from '.'
+import { Check_unique } from '../unique'
+
+const check_unique = Check_unique()
 
 /**
  * value 被存到 localStorage 或 sessionStorage 里的 Store，
@@ -7,6 +10,7 @@ import { Store } from '.'
  */
 export
 const Persist_store = (key: string, initial_val: string | null, storage = localStorage) => {
+  check_unique(key)
   key = 'PPz_awesome!_' + key
   const last_val = storage.getItem(key)
   if (last_val !== null) // 上次已经存了值
