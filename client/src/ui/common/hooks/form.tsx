@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 interface Input_props {
   initial_val?: string
+  type?: string
   check_format?: (val: string) => boolean
 }
 
@@ -16,6 +17,7 @@ const useInput = (props: Input_props = {}) => {
 
     el: <input
       value = {val}
+      type = {props.type}
       onChange = {evt => {
         set(evt.currentTarget.value)
       }}
