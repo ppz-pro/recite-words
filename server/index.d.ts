@@ -23,19 +23,20 @@ declare interface App {
 }
 
 // request
-declare interface Handle_props<Body> {
+declare interface Handle_props {
   req: Request
   app: App
   url: URL
-  body: Body
 }
 
-type Handle<Body> = (props: Handle_props<Body>) => Wait<Response>
+type Handle = (props: Handle_props) => Wait<Response>
 
-type Middleware<Body> = (handle: Handle<Body>) => Handle<Body>
+type Middleware = (handle: Handle) => Handle
 
-declare interface Route<Body = void> {
-  method: 'get' | 'post'
+type Req_method = 'GET' | 'POST'
+
+declare interface Route {
+  method: Req_method
   path: string
-  handle: Handle<Body>
+  handle: Handle
 }
