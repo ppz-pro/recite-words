@@ -1,8 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { css } from '@emotion/react'
-import { Route } from 'wouter'
-import { pages } from '../ss/router'
+import { Routes } from './pages/routes'
 
 export default
 function() {
@@ -14,6 +12,5 @@ function() {
 
 const App = () =>
   <>
-    <Route path = {pages.home.path}></Route>
-    <Route path = {pages.login.path}></Route>
+    <Routes />
   </>
