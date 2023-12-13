@@ -4,4 +4,5 @@ enum Err_code {
 
   WRONG_USERNAME_OR_PASSWORD,
 
+  UNKNOWN,
 }

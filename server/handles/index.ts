@@ -1,9 +1,11 @@
 import { login_route } from './auth.ts'
+import { look_up_route } from './lookup.ts'
 
 export
 const Router = () => {
   const list: Route[] = [
     login_route,
+    look_up_route,
   ]
 
   const map: Record<string, Record<string, Handle | undefined> | undefined> = {}
