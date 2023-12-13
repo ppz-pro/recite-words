@@ -23,5 +23,4 @@ const login = async (username: string, password: string) => {
     set_token(token)
   else
     throw Error('login error, no token in success res')
-
 }
