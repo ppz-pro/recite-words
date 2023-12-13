@@ -20,7 +20,7 @@ const login = async (username: string, password: string) => {
     password,
   })
   if (typeof token == 'string' && token.length)
-    return token
+    set_token(token)
   else
     throw Error('login error, no token in success res')
 
