@@ -16,6 +16,7 @@ class Collection_impl<Record extends Collection_record> implements Collection<Re
 
   async set(key: string, record: Record): Promise<void> {
     record._id = key
+    console.debug('setting kv', this.k(key), record)
     await this.kv.set(this.k(key), record)
   }
 

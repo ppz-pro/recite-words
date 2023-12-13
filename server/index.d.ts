@@ -17,6 +17,9 @@ declare interface User_record extends Collection_record {
 }
 
 declare interface App {
+  options: {
+    db_path: string | undefined
+  },
   models: {
     user: Collection<User_record>
   }
