@@ -37,8 +37,8 @@ const login_route: Route = {
       console.log(`user login success [${boe.username}]`)
       const token = crypto.randomUUID()
       await app.models.user_token.set(
-        boe.username,
-        { val: token },
+        token,
+        { username: boe.username },
         { expireIn: 2 * 60 * 60 * 1000 },
       )
       return res_success(token)

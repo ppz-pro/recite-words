@@ -20,7 +20,7 @@ declare interface User_record extends Collection_record {
   password: string
 }
 declare interface User_token_record extends Collection_record {
-  val: string
+  username: string
 }
 
 declare interface App {
@@ -42,7 +42,7 @@ declare interface Handle_props {
 
 type Handle = (props: Handle_props) => Wait<Response>
 
-type Middleware = (handle: Handle) => Handle
+type Middleware<Injected = void> = (handle: (props: Handle_props, injected: Injected) => ReturnType<Handle>) => Handle
 
 type Req_method = 'GET' | 'POST'
 

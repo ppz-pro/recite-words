@@ -1,4 +1,4 @@
-type request = (url: string, data: unknown, headers?: Headers) => unknown
+type request = (url: string, data: unknown, headers?: unknown) => unknown
 
 interface http {
   GET: request
@@ -7,7 +7,6 @@ interface http {
 
 export
 const http: http
-
 
 export
 class HTTP_err extends Error {

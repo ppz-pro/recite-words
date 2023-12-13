@@ -10,12 +10,20 @@ const set_token = (token: string) => {
 }
 
 export
+const get_auth_header = () => {
+  const Token = token_store.get()
+  if (Token === null)
+    throw Error('no token')
+  return { Token }
+}
+
+export
 const useHas_login = () =>
   token_store.useVal() !== null
 
 export
 const login = async (username: string, password: string) => {
-  const token = await http.POST('/api/login', {
+  const token = await http.POST('/login', {
     username,
     password,
   })

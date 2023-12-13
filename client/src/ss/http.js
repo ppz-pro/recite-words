@@ -2,6 +2,7 @@ export
 const http = new Proxy({}, {
   get(_, method) {
     return async (url, data, headers) => {
+      url = '/api' + url
       if (method == 'GET') {
         url += query_str(data)
         data = undefined
