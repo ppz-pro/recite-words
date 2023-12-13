@@ -8,12 +8,13 @@ interface Input_props {
 
 export
 const useInput = (props: Input_props = {}) => {
-  const [val, set] = useState(props.initial_val)
+  const init_val = props.initial_val || ''
+  const [val, set] = useState(init_val)
 
   return {
     val,
     set,
-    reset: () => set(props.initial_val),
+    reset: () => set(init_val),
 
     el: <input
       value = {val}

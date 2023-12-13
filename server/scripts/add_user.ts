@@ -3,8 +3,8 @@
 import { Collection_impl } from '../lib/kv_helper/collection.ts'
 import { retrieve_app_config } from '../app_config.ts'
 
-const username = 'ppz'
-const password = '0523'
+const username = ''
+const password = ''
 
 try {
   const kv = await Deno.openKv(retrieve_app_config().db_path)

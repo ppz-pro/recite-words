@@ -1,4 +1,5 @@
 import { Persist_store } from '../lib/store/persist'
+import { http } from './http'
 
 const token_store = Persist_store('token', null)
 
@@ -11,3 +12,16 @@ const set_token = (token: string) => {
 export
 const useHas_login = () =>
   token_store.useVal() !== null
+
+export
+const login = async (username: string, password: string) => {
+  const token = await http.POST('/api/login', {
+    username,
+    password,
+  })
+  if (typeof token == 'string' && token.length)
+    return token
+  else
+    throw Error('login error, no token in success res')
+
+}
