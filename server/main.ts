@@ -13,6 +13,7 @@ const app: App = await async function() {
     options,
     models: {
       user: new Collection_impl(kv, 'user'),
+      user_token: new Collection_impl(kv, 'user_token'),
     }
   }
 }()

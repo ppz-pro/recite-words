@@ -14,10 +14,10 @@ class Collection_impl<Record extends Collection_record> implements Collection<Re
     return entry.value
   }
 
-  async set(key: string, record: Record): Promise<void> {
+  async set(key: string, record: Record, options?: KV_setter_options): Promise<void> {
     record._id = key
-    console.debug('setting kv', this.k(key), record)
-    await this.kv.set(this.k(key), record)
+    console.debug('setting kv', this.k(key), record, options)
+    await this.kv.set(this.k(key), record, options)
   }
 
   async all() {

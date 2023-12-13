@@ -8,12 +8,19 @@ interface Collection_record {
 declare interface Collection<Record extends Collection_record> {
   get(key: string): Wait<Record | null>
   all(): Wait<Record[]>
-  set(key: string, record: Record): Promise<void>
+  set(key: string, record: Record, options?: KV_setter_options): Promise<void>
+}
+
+declare interface KV_setter_options {
+  expireIn?: number
 }
 
 // global
 declare interface User_record extends Collection_record {
   password: string
+}
+declare interface User_token_record extends Collection_record {
+  val: string
 }
 
 declare interface App {
@@ -22,6 +29,7 @@ declare interface App {
   },
   models: {
     user: Collection<User_record>
+    user_token: Collection<User_token_record>
   }
 }
 

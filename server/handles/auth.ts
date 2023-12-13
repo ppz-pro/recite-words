@@ -35,7 +35,13 @@ const login_route: Route = {
         return res_error(Err_code.WRONG_USERNAME_OR_PASSWORD)
       }
       console.log(`user login success [${boe.username}]`)
-      return res_success()
+      const token = crypto.randomUUID()
+      await app.models.user_token.set(
+        boe.username,
+        { val: token },
+        { expireIn: 2 * 60 * 60 * 1000 },
+      )
+      return res_success(token)
     }
   },
 }
