@@ -22,7 +22,7 @@ const get_body = async (req: Request) => {
 
 export
 const login_route: Route = {
-  method: 'GET',
+  method: 'POST',
   path: '/login',
   handle: async ({ req, app }) => {
     const boe = await get_body(req) // body or error
@@ -30,8 +30,11 @@ const login_route: Route = {
       return boe
     else {
       const user = await app.models.user.get(boe.username)
-      if (!user || user.password !== boe.password)
+      if (!user || user.password !== boe.password) {
+        console.log(`user login failed [${boe.username}]`)
         return res_error(Err_code.WRONG_USERNAME_OR_PASSWORD)
+      }
+      console.log(`user login success [${boe.username}]`)
       return res_success()
     }
   },

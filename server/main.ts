@@ -24,15 +24,17 @@ Deno.serve(
     const url = new URL(req.url)
     try {
       if (url.pathname.startsWith('/api/')) {
-        const handle_api = router(req.method as Req_method, url.pathname)
+        const handle_api = router(req.method as Req_method, url.pathname.slice(4))
         if (handle_api)
           return await handle_api({
             url,
             req,
             app,
           })
-        else
+        else {
+          console.warn('api not found', req.method, url.pathname)
           return res_err.not_found()
+        }
       }
       else
         return await serve_statics(url.pathname)
