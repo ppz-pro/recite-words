@@ -13,6 +13,7 @@ export
 const Word_card: FC<Props> = ({ word }) => {
   const [paraphrases, set_paraphrases] = useState<Paraphrase[] | null>(null)
   useWatch([word], async () => {
+    set_paraphrases(null)
     set_paraphrases(await lookup(word))
   })
 
@@ -23,7 +24,12 @@ const Word_card: FC<Props> = ({ word }) => {
   >
     <h3>{word}</h3>
     {paraphrases
-      ? paraphrases.map(p => <Paraphrase_card val = {p} />)
+      ? paraphrases.map(p =>
+        <Paraphrase_card
+          val = {p}
+          key = {p.meta.id}
+        />
+      )
       : 'loading'
     }
   </div>

@@ -7,6 +7,6 @@ interface Props {
 export
 const Paraphrase_card: FC<Props> = ({ val }) => {
   return <ul>
-    {val.shortdef.map(item => <li>{item}</li>)}
+    {val.shortdef.map(item => <li key = {item}>{item}</li>)}
   </ul>
 }
