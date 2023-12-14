@@ -13,7 +13,9 @@ const retrieve_app_config = () => {
     default:
       throw Error('no env variable [ENV_MODE] (DEVELOPMENT or PRODUCTION)')
   }
+
   return {
     db_path,
+    session_timeout: 2 * 60 * 60 * 1000,
   }
 }

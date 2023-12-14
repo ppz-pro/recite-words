@@ -39,7 +39,7 @@ const login_route: Route = {
       await app.models.user_token.set(
         token,
         { username: boe.username },
-        { expireIn: 2 * 60 * 60 * 1000 },
+        { expireIn: app.options.session_timeout },
       )
       return res_success(token)
     }

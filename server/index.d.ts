@@ -26,6 +26,7 @@ declare interface User_token_record extends Collection_record {
 declare interface App {
   options: {
     db_path: string | undefined
+    session_timeout: number
   },
   models: {
     user: Collection<User_record>

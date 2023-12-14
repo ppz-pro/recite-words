@@ -1,4 +1,4 @@
-import { Err_code } from '../../err_code.ts';
+import { Err_code } from '../../err_code.ts'
 import { res_error } from '../../lib/utils/index.ts'
 
 export
@@ -12,5 +12,8 @@ const check_session: Middleware<string> = (handle) =>
     if (token_record === null)
       return res_error(Err_code.TOKEN_EXPIRED)
 
+    await props.app.models.user_token.set(token, token_record, {
+      expireIn: props.app.options.session_timeout,
+    })
     return handle(props, token_record.username)
   }
