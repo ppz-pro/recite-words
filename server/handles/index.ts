@@ -15,5 +15,8 @@ const Router = () => {
     methods[route.path] = route.handle
   }
   
-  return (method: Req_method, path: string) => map?.[method]?.[path]
+  return (method: Req_method, path: string) => {
+    console.log(`serving api: ${method} ${path}`)
+    return map?.[method]?.[path]
+  }
 }
