@@ -23,21 +23,24 @@ declare interface User_token_record extends Collection_record {
   username: string
 }
 
+interface Models {
+  user: Collection<User_record>
+  user_token: Collection<User_token_record>
+}
+
 declare interface App {
   options: {
     db_path: string | undefined
     session_timeout: number
   },
-  models: {
-    user: Collection<User_record>
-    user_token: Collection<User_token_record>
-  }
+  models: Models
 }
 
 // request
 declare interface Handle_props {
   req: Request
   app: App
+  models: Models
   url: URL
 }
 

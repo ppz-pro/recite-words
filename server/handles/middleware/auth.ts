@@ -8,11 +8,11 @@ const check_session: Middleware<string> = (handle) =>
     if (token === null)
       return res_error(Err_code.NO_TOKEN)
     
-    const token_record = await props.app.models.user_token.get(token)
+    const token_record = await props.models.user_token.get(token)
     if (token_record === null)
       return res_error(Err_code.TOKEN_EXPIRED)
 
-    await props.app.models.user_token.set(token, token_record, {
+    await props.models.user_token.set(token, token_record, {
       expireIn: props.app.options.session_timeout,
     })
     return handle(props, token_record.username)

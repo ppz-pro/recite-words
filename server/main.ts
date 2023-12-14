@@ -34,6 +34,7 @@ Deno.serve(
             url,
             req,
             app,
+            models: app.models,
           })
         else {
           console.warn('api not found', req.method, url.pathname)
