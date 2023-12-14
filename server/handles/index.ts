@@ -1,4 +1,4 @@
-import { login_route } from './auth.ts'
+import { login_route } from './auth.js'
 import { look_up_route } from './lookup.ts'
 
 export

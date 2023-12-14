@@ -1,31 +1,20 @@
 import { all_true } from '../lib/utils/index.ts'
 import { check_str } from '../lib/type/index.ts'
-import { res_err } from '../lib/response_helper/index.ts'
 import { Err_code } from '../err_code.ts'
 import { res_error, res_success } from '../lib/utils/http.ts'
 
-interface Login_body {
-  username: string
-  password: string
-}
-
-const get_body = async (req: Request) => {
-  const body = await req.json()
-  if (all_true(
-    check_str(body.username),
-    check_str(body.password),
-  ))
-    return body as Login_body
-  else
-    return res_err.bad_req()
-}
-
+/** @type {Route} */
 export
-const login_route: Route = {
+const login_route = {
   method: 'POST',
   path: '/login',
   handle: async ({ req, app }) => {
-    const boe = await get_body(req) // body or error
+    const boe = await retrieve_body(req, (body) => // 这里 body 最好加个括号，否则 req 像是 check 的参数
+      all_true(
+        check_str(body.username),
+        check_str(body.password),
+      )
+    )
     if (boe instanceof Response)
       return boe
     else {

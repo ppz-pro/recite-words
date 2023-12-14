@@ -1,4 +1,20 @@
 import { Err_code } from '../../err_code.ts'
+import { res_err } from '../response_helper/index.ts'
+
+export
+const retrieve_body = async (req: Request, check: (body: unknown) => unknown) => {
+  try {
+    const body = await req.json()
+    if (check(body))
+      return body
+    else
+      throw Error('body of request unvalidated')
+  } catch(err) {
+    console.error(req.method, req.url)
+    console.error(err)
+    return res_err.bad_req()
+  }
+}
 
 interface JSON_data {
   code: Err_code,
