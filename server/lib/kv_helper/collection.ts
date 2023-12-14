@@ -20,6 +20,10 @@ class Collection_impl<Record extends Collection_record> implements Collection<Re
     await this.kv.set(this.k(key), record, options)
   }
 
+  async del(key: string) {
+    await this.kv.delete(this.k(key))
+  }
+
   async all() {
     const res = this.kv.list<Record>({
       prefix: [this.name]

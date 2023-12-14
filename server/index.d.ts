@@ -9,6 +9,7 @@ declare interface Collection<Record extends Collection_record> {
   get(key: string): Wait<Record | null>
   all(): Wait<Record[]>
   set(key: string, record: Record, options?: KV_setter_options): Promise<void>
+  del(key: string): Promise<void>
 }
 
 declare interface KV_setter_options {

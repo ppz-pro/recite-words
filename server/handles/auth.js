@@ -2,6 +2,19 @@ import { all_true } from '../lib/utils/index.ts'
 import { check_str } from '../lib/type/index.ts'
 import { Err_code } from '../err_code.ts'
 import { res_error, res_success } from '../lib/utils/http.ts'
+import { check_session } from './middleware/auth.ts'
+
+/** @type {Route} */
+export
+const logout_route = {
+  method: 'POST',
+  path: '/logout',
+  handle: check_session(async ({ req, models }) => {
+    const token = req.headers.get('Token')
+    await models.user_token.del(token)
+    return res_success()
+  }),
+}
 
 /** @type {Route} */
 export
