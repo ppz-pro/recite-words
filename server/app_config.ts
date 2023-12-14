@@ -1,12 +1,14 @@
 // env variables => app config
 
+import { abs_path } from './lib/utils/index.ts'
+
 export
 const retrieve_app_config = () => {
   const env_mode = Deno.env.get('ENV_MODE')
   let db_path: string | undefined
   switch (env_mode) {
     case 'DEVELOPMENT':
-      db_path = './db/main'
+      db_path = abs_path(import.meta.url, '../db/main')
       break
     case 'PRODUCTION':
       break
