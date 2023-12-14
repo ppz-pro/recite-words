@@ -1,11 +1,13 @@
 import { Collection_impl } from '../lib/kv_helper/collection.ts'
-import { retrieve_app_config } from '../app_config.ts'
 
 const username = ''
 const password = ''
 
 try {
-  const kv = await Deno.openKv(retrieve_app_config().db_path)
+  const uuid = Deno.env.get('RECITE_WORD_KV_UUID')
+  const access_token = Deno.env.get('DENO_KV_ACCESS_TOKEN')
+  console.log({ uuid, access_token })
+  const kv = await Deno.openKv(`https://api.deno.com/databases/${uuid}/connect`)
   const user_coll = new Collection_impl<User_record>(kv, 'user')
 
   await user_coll.set(username, {
