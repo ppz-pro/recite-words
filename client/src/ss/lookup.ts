@@ -1,7 +1,8 @@
 import { get_auth_header } from './auth'
 import { http } from './http'
+import { Paraphrase } from '../../../server/common_types'
 
 export
-const lookup = (word: string) => {
-  return http.GET('/lookup', { word }, get_auth_header())
+const lookup = async (word: string): Promise<Paraphrase[]> => {
+  return await http.GET('/lookup', { word }, get_auth_header()) as Paraphrase[]
 }

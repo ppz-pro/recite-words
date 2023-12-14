@@ -4,7 +4,7 @@ import { useNav_login } from '../../ss/router'
 import { Props } from '../../types'
 
 export
-const Login_required: FC<Props.Child> = ({ children }) => {
+const Login_required: FC<Props.Children> = ({ children }) => {
   const has_login = useHas_login()
   const nav_login = useNav_login()
   useEffect(

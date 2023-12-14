@@ -1,9 +1,9 @@
-import { ReactElement } from 'react'
+import { ReactNode } from 'react'
 
 export
 namespace Props {
   export 
-  interface Child {
-    children: ReactElement
+  interface Children {
+    children: ReactNode
   }
 }
