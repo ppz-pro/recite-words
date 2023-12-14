@@ -1,3 +1,6 @@
+import { Err_code } from '../../../server/err_code'
+import { empty_token } from './auth'
+
 export
 const http = new Proxy({}, {
   get(_, method) {
@@ -13,10 +16,18 @@ const http = new Proxy({}, {
         headers,
       })
       const res_body = await res.json()
-      if (res_body.code == 0)
-        return res_body.data
-      else
-        throw new HTTP_err(res_body.code)
+      switch (res_body.code) {
+        case Err_code.SUCCESS:
+          return res_body.data
+        case Err_code.TOKEN_EXPIRED:
+          console.error('token expired')
+          empty_token()
+          break
+        default:
+          if (res_body.code > Err_code.UNKNOWN)
+            throw new Error(`unknown error code: ${res_body.code}`)
+      }
+      throw new HTTP_err(res_body.code)
     }
   }
 })
@@ -24,7 +35,7 @@ const http = new Proxy({}, {
 export
 class HTTP_err extends Error {
   constructor(code) {
-    super('http error from server')
+    super(`http error from server, code: ${code}`)
     this.code = code
   }
 }

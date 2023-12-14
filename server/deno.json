@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "serve": "deno run --allow-read --allow-write --allow-env --unstable --allow-net ./main.ts",
+    "start": "deno run --allow-read --allow-write --allow-env --unstable --allow-net ./main.ts",
     "list_users": "deno run --allow-read --allow-write --allow-env --unstable ./scripts/list_users.js",
     "kvs": "deno run --allow-read --allow-write --allow-env --unstable ./scripts/list_kvs.js"
   }

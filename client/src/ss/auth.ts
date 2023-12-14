@@ -3,11 +3,12 @@ import { http } from './http'
 
 const token_store = Persist_store('token', null)
 
-export
-const set_token = (token: string) => {
+const set_token = (token: string | null) => {
   // 虽然只有一行代码，“不用大括号显得好看”，但用大括号来表明“没有返回值”，能增加确定性
   token_store.set((_old: string | null) => token)
 }
+export
+const empty_token = () => set_token(null)
 
 export
 const get_auth_header = () => {
