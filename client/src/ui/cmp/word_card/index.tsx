@@ -3,6 +3,7 @@ import { FC, useState } from 'react'
 import { lookup } from '../../../ss/lookup'
 import { useWatch } from '../../common/hooks'
 import { Paraphrase } from '../../../../../server/common_types'
+import { Paraphrase_card } from './paraphrase'
 
 interface Props {
   word: string
@@ -22,7 +23,7 @@ const Word_card: FC<Props> = ({ word }) => {
   >
     <h3>{word}</h3>
     {paraphrases
-      ? JSON.stringify(paraphrases)
+      ? paraphrases.map(p => <Paraphrase_card val = {p} />)
       : 'loading'
     }
   </div>
