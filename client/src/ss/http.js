@@ -1,4 +1,4 @@
-import { Err_code } from '../../../server/err_code'
+import { Err_code } from '../../../server/common/err_code'
 import { empty_token } from './auth'
 
 export

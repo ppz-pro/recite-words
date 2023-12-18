@@ -1,3 +1,5 @@
+import { Collection, Collection_record, KV_setter_options } from './types.ts'
+
 export
 class Collection_impl<Record extends Collection_record> implements Collection<Record> {
   constructor(
@@ -14,7 +16,7 @@ class Collection_impl<Record extends Collection_record> implements Collection<Re
     return entry.value
   }
 
-  async set(key: string, record: Record, options?: KV_setter_options): Promise<void> {
+  async set(key: string, record: Record, options?: KV_setter_options) {
     record._id = key
     console.debug('setting kv', this.k(key), record, options)
     await this.kv.set(this.k(key), record, options)

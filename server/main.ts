@@ -1,12 +1,19 @@
-import { Router } from './handles/index.ts'
-import { res_err } from './lib/response_helper/index.ts'
-import { check_static_path, serve_statics } from './serve_statics.ts'
-import { Collection_impl } from './lib/kv_helper/collection.ts'
+import { abs_path, calc } from './deps/fns/index.ts'
+import { res_err } from './deps/simple_web_framework/respond/index.ts'
+
+import { App } from './types.ts'
+import { router } from './handles/index.ts'
+import { Serve_statics } from './deps/simple_web_framework/serve_static/index.ts'
+import { Collection_impl } from './deps/simple_web_framework/kv/collection.ts'
 import { retrieve_app_config } from './app_config.ts'
 
-check_static_path()
+const serve_static = Serve_statics({
+  dirname: check_static_root(abs_path(import.meta.url, '../client/public')),
+  spa: true,
+  dir_as_index: true,
+})
 
-const app: App = await async function() {
+const app: App = await calc(async()  => {
   const options = retrieve_app_config()
   const kv = await Deno.openKv(options.db_path)
   return {
@@ -16,19 +23,17 @@ const app: App = await async function() {
       user_token: new Collection_impl(kv, 'user_token'),
     }
   }
-}()
-
-const router = Router()
+})
 
 Deno.serve(
   {
     port: 10002,
   },
-  async (req: Request): Promise<Response> => {
+  async (req: Request) => {
     const url = new URL(req.url)
     try {
       if (url.pathname.startsWith('/api/')) {
-        const handle_api = router(req.method as Req_method, url.pathname.slice(4))
+        const handle_api = router(req.method, url.pathname.slice(4))
         if (handle_api)
           return await handle_api({
             url,
@@ -42,10 +47,14 @@ Deno.serve(
         }
       }
       else
-        return await serve_statics(url.pathname)
+        return await serve_static(url.pathname)
     } catch(err) {
       console.error(err)
       return new Response('Unknown error', { status: 500 })
     }
   }
 )
+
+function check_static_root(path: string) {
+  return path
+}

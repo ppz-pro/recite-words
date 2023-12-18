@@ -1,4 +1,4 @@
-import { Collection_impl } from '../lib/kv_helper/collection.ts'
+import { Collection_impl } from '../deps/simple_web_framework/kv/collection.ts'
 
 const username = ''
 const password = ''

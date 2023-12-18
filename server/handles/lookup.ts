@@ -1,10 +1,13 @@
-import { Err_code } from '../err_code.ts'
-import { check_str } from '../lib/type/index.ts'
-import { res_success, res_error } from '../lib/utils/http.ts'
+import { check_str } from '../deps/simple_web_framework/aajv/index.ts'
+import { Route } from '../deps/simple_web_framework/router/types.ts'
+import { res_success, res_error } from '../deps/simple_web_framework/respond/index.ts'
+
+import { Err_code } from '../common/err_code.ts'
+import { Req_ctx } from '../types.ts'
 import { check_session } from './middleware/auth.ts'
 
 export
-const look_up_route: Route = {
+const look_up_route: Route<Req_ctx> = {
   method: 'GET',
   path: '/lookup',
   handle: check_session(async ({ url }, username) => {

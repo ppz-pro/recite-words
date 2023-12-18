@@ -1,6 +1,6 @@
 // env variables => app config
 
-import { abs_path } from './lib/utils/index.ts'
+import { abs_path } from './deps/fns/index.ts'
 
 export
 const retrieve_app_config = () => {

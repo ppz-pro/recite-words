@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Err_code } from '../../../../../server/err_code'
+import { Err_code } from '../../../../../server/common/err_code'
 import { useInput } from '../../common/hooks'
 import { login } from '../../../ss/auth'
 import { HTTP_err } from '../../../ss/http'

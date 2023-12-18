@@ -1,29 +1,34 @@
-import { all_true } from '../lib/utils/index.ts'
-import { check_str } from '../lib/type/index.ts'
-import { Err_code } from '../err_code.ts'
-import { res_error, res_success } from '../lib/utils/http.ts'
-import { check_session } from './middleware/auth.ts'
-import { retrieve_body } from '../lib/utils/index.ts'
+import { all_true } from '../deps/fns/index.ts'
+import { check_str, retrieve_body } from '../deps/simple_web_framework/aajv/index.ts'
+import { res_error, res_success } from '../deps/simple_web_framework/respond/index.ts'
+import { Route } from '../deps/simple_web_framework/router/types.ts'
 
-/** @type {Route} */
+import { Req_ctx } from '../types.ts'
+import { Err_code } from '../common/err_code.ts'
+import { check_session } from './middleware/auth.ts'
+
 export
-const logout_route = {
+const logout_route: Route<Req_ctx> = {
   method: 'POST',
   path: '/logout',
   handle: check_session(async ({ req, models }) => {
-    const token = req.headers.get('Token')
+    const token = req.headers.get('Token') as string
     await models.user_token.del(token)
     return res_success()
   }),
 }
 
-/** @type {Route} */
+interface Login_body {
+  username: string
+  password: string
+}
+
 export
-const login_route = {
+const login_route: Route<Req_ctx> = {
   method: 'POST',
   path: '/login',
   handle: async ({ req, app, models }) => {
-    const boe = await retrieve_body(req, (body) => // 这里 body 最好加个括号，否则 req 像是 check 的参数
+    const boe = await retrieve_body<Login_body>(req, (body) => // 这里 body 最好加个括号，否则 req 像是 check 的参数
       all_true(
         check_str(body.username),
         check_str(body.password),
