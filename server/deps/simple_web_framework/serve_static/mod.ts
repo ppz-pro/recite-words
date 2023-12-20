@@ -1,4 +1,4 @@
-import { res_err } from '../respond/index.ts'
+import { res_err } from '../respond/mod.ts'
 
 interface Static_opts {
   dirname: string

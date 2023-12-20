@@ -1,7 +1,7 @@
-import { Collection, Collection_record, KV_setter_options } from './types.ts'
+import { Collection, I_record, Record_data, KV_setter_options } from './types.ts'
 
 export
-class Collection_impl<Record extends Collection_record> implements Collection<Record> {
+class Collection_impl<Record extends I_record> implements Collection<Record> {
   constructor(
     private kv: Deno.Kv,
     private name: string,
@@ -16,8 +16,11 @@ class Collection_impl<Record extends Collection_record> implements Collection<Re
     return entry.value
   }
 
-  async set(key: string, record: Record, options?: KV_setter_options) {
-    record._id = key
+  async set(key: string, data: Record_data<Record>, options?: KV_setter_options) {
+    const record = {
+      _id: key,
+      ...data,
+    }
     console.debug('setting kv', this.k(key), record, options)
     await this.kv.set(this.k(key), record, options)
   }

@@ -1,6 +1,6 @@
-import { check_str } from '../deps/simple_web_framework/aajv/index.ts'
+import { check_str } from '../deps/simple_web_framework/aajv/mod.ts'
 import { Route } from '../deps/simple_web_framework/router/types.ts'
-import { res_success, res_error } from '../deps/simple_web_framework/respond/index.ts'
+import { res_success, res_error } from '../deps/simple_web_framework/respond/mod.ts'
 
 import { Err_code } from '../common/err_code.ts'
 import { Req_ctx } from '../types.ts'

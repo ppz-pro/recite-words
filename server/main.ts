@@ -1,10 +1,8 @@
 import { abs_path, calc } from './deps/fns/index.ts'
-import { res_err } from './deps/simple_web_framework/respond/index.ts'
+import { res_err, Serve_statics, Collection_impl, Collection_UUID } from './deps/simple_web_framework/mod.ts'
 
 import { App } from './types.ts'
 import { router } from './handles/index.ts'
-import { Serve_statics } from './deps/simple_web_framework/serve_static/index.ts'
-import { Collection_impl } from './deps/simple_web_framework/kv/collection.ts'
 import { retrieve_app_config } from './app_config.ts'
 
 const serve_static = Serve_statics({
@@ -19,7 +17,7 @@ const app: App = await calc(async()  => {
   return {
     options,
     models: {
-      user: new Collection_impl(kv, 'user'),
+      user: new Collection_UUID(kv, 'user'),
       user_token: new Collection_impl(kv, 'user_token'),
     }
   }

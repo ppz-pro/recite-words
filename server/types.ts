@@ -1,17 +1,21 @@
-import { Collection_record, Collection } from './deps/simple_web_framework/kv/types.ts'
-import { Context } from './deps/simple_web_framework/router/types.ts'
+import {
+  I_record,
+  Collection,
+  Collection_UUID,
+  Context,
+} from './deps/simple_web_framework/mod.ts'
 
 export
-interface User_record extends Collection_record {
+interface User_record extends I_record {
   password: string
 }
 export
-interface User_token_record extends Collection_record {
+interface User_token_record extends I_record {
   username: string
 }
 
 interface Models {
-  user: Collection<User_record>
+  user: Collection_UUID<User_record>
   user_token: Collection<User_token_record>
 }
 

@@ -1,5 +1,4 @@
-import { res_error } from '../../deps/simple_web_framework/respond/index.ts'
-import { Middleware } from '../../deps/simple_web_framework/router/types.ts'
+import { res_error, Middleware } from '../../deps/simple_web_framework/mod.ts'
 
 import { Err_code } from '../../common/err_code.ts'
 import { Req_ctx } from '../../types.ts'

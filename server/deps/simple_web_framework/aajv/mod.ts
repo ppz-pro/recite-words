@@ -1,6 +1,5 @@
 // another ajv
-import { Bad_req } from '../respond/error.ts'
-import { res_err } from "../respond/index.ts";
+import { res_err } from '../respond/mod.ts'
 
 export
 const check_str = (obj: unknown, allow_empty = false) =>

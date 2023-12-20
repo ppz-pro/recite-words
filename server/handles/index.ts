@@ -1,4 +1,4 @@
-import { Router } from '../deps/simple_web_framework/router/index.ts'
+import { Router } from '../deps/simple_web_framework/mod.ts'
 
 import { Req_ctx } from '../types.ts'
 import { login_route, logout_route } from './auth.ts'

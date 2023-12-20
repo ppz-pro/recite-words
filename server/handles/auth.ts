@@ -1,7 +1,11 @@
+import {
+  Route,
+  check_str,
+  retrieve_body,
+  res_error,
+  res_success,
+} from '../deps/simple_web_framework/mod.ts'
 import { all_true } from '../deps/fns/index.ts'
-import { check_str, retrieve_body } from '../deps/simple_web_framework/aajv/index.ts'
-import { res_error, res_success } from '../deps/simple_web_framework/respond/index.ts'
-import { Route } from '../deps/simple_web_framework/router/types.ts'
 
 import { Req_ctx } from '../types.ts'
 import { Err_code } from '../common/err_code.ts'

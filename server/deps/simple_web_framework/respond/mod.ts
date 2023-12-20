@@ -1,3 +1,5 @@
+export * from './error.ts'
+
 export
 const res_err = {
   not_found: () =>

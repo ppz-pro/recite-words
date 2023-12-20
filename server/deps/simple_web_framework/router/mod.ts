@@ -1,5 +1,7 @@
 import { Route, Context, Handle } from './types.ts'
 
+export * from './types.ts'
+
 export
 const Router = <Ctx extends Context>(routes: Route<Ctx>[]) => {
   const map: Record<string, Handle<Ctx>> = {}
