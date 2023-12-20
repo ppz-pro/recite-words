@@ -3,9 +3,9 @@
     "start": "deno run --allow-read --allow-write --allow-env --unstable --allow-net ./main.ts",
     "add_user": "deno run --allow-read --allow-write --allow-env --unstable ./scripts/add_user.ts",
     "list_users": "deno run --allow-read --allow-write --allow-env --unstable ./scripts/list_users.js",
-    "kvs": "deno run --allow-read --allow-write --allow-env --unstable ./scripts/list_kvs.js",
+    "kvs": "deno run --allow-read --allow-write --allow-env --unstable ./scripts/kvs.js",
 
     "add_user_pro": "deno run --unstable --allow-env --allow-net ./scripts/add_user_pro.ts",
-    "kvs_pro": "deno run --unstable --allow-env --allow-net ./scripts/list_kvs_pro.js"
+    "kvs_pro": "deno run --unstable --allow-env --allow-net ./scripts/kvs_pro.js"
   }
 }
