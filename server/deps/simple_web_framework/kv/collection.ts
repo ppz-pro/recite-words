@@ -1,7 +1,7 @@
-import { Collection, I_record, Record_data, KV_setter_options } from './types.ts'
+import { I_collection, I_record, Record_data, KV_setter_options } from './types.ts'
 
 export
-class Collection_impl<Record extends I_record> implements Collection<Record> {
+class Collection<Record extends I_record> implements I_collection<Record> {
   constructor(
     private kv: Deno.Kv,
     private name: string,

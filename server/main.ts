@@ -1,5 +1,5 @@
 import { abs_path, calc } from './deps/fns/index.ts'
-import { res_err, Serve_statics, Collection_impl, Collection_UUID } from './deps/simple_web_framework/mod.ts'
+import { res_err, Serve_statics, Collection, Collection_UUID } from './deps/simple_web_framework/mod.ts'
 
 import { App } from './types.ts'
 import { router } from './handles/index.ts'
@@ -18,7 +18,7 @@ const app: App = await calc(async()  => {
     options,
     models: {
       user: new Collection_UUID(kv, 'user'),
-      user_token: new Collection_impl(kv, 'user_token'),
+      user_token: new Collection(kv, 'user_token'),
     }
   }
 })

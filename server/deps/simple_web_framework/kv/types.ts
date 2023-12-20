@@ -11,7 +11,7 @@ export
 type Record_data<Record extends I_record> = Omit<Record, '_id'>
 
 export
-interface Collection<Record extends I_record> {
+interface I_collection<Record extends I_record> {
   get(key: string): Promise<Record | null>
   all(filter?: (record: Record) => boolean): Promise<Record[]>
   one(find: (record: Record) => boolean): Promise<Record | null>

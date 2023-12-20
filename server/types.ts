@@ -1,6 +1,6 @@
 import {
   I_record,
-  Collection,
+  I_collection,
   Collection_UUID,
   Context,
 } from './deps/simple_web_framework/mod.ts'
@@ -17,7 +17,7 @@ interface User_token_record extends I_record {
 
 interface Models {
   user: Collection_UUID<User_record>
-  user_token: Collection<User_token_record>
+  user_token: I_collection<User_token_record>
 }
 
 export
