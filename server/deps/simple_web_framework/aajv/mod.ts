@@ -8,14 +8,14 @@ const check_str = (obj: unknown, allow_empty = false) =>
   )
 
 export
-const retrieve_body = async <Body>(req: Request, check: (body: any) => boolean) => {
+const retrieve_body = async <Body>(req: Request, check: (body: any) => boolean): Promise<Body> => {
   try {
     const body = await req.json()
     if (check(body))
       return body as Body
     else
-      return res_err.bad_req()
+      throw res_err.bad_req()
   } catch {
-    return res_err.bad_req()
+    throw res_err.bad_req()
   }
 }

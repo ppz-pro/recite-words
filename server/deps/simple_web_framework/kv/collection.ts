@@ -29,7 +29,7 @@ class Collection_impl<Record extends I_record> implements Collection<Record> {
     await this.kv.delete(this.k(key))
   }
 
-  async all() {
+  async all(filter?: (record: Record) => boolean) {
     const res = this.kv.list<Record>({
       prefix: [this.name]
     })
@@ -38,6 +38,11 @@ class Collection_impl<Record extends I_record> implements Collection<Record> {
     for await (const item of res)
       list.push(item)
 
-    return list.map(entry => entry.value)
+    const result = list.map(entry => entry.value)
+    return filter ? result.filter(filter) : result
+  }
+
+  async one(find: (record: Record) => boolean): Promise<Record | null> {
+    return (await this.all(find))[0] || null
   }
 }

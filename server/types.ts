@@ -7,11 +7,12 @@ import {
 
 export
 interface User_record extends I_record {
+  username: string
   password: string
 }
 export
 interface User_token_record extends I_record {
-  username: string
+  user_ID: string
 }
 
 interface Models {

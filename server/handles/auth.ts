@@ -32,28 +32,27 @@ const login_route: Route<Req_ctx> = {
   method: 'POST',
   path: '/login',
   handle: async ({ req, app, models }) => {
-    const boe = await retrieve_body<Login_body>(req, (body) => // 这里 body 最好加个括号，否则 req 像是 check 的参数
-      all_true(
+    const boe = await retrieve_body<Login_body>(req,
+      (body) => all_true(
         check_str(body.username),
         check_str(body.password),
       )
     )
-    if (boe instanceof Response)
-      return boe
-    else {
-      const user = await models.user.get(boe.username)
-      if (!user || user.password !== boe.password) {
-        console.log(`user login failed [${boe.username}]`)
-        return res_error(Err_code.WRONG_USERNAME_OR_PASSWORD)
-      }
-      console.log(`user login success [${boe.username}]`)
-      const token = crypto.randomUUID()
-      await models.user_token.set(
-        token,
-        { username: boe.username },
-        { expireIn: app.options.session_timeout },
-      )
-      return res_success(token)
+    const user = await models.user.one(user =>
+      user.username == boe.username
+      && user.password == boe.password
+    )
+    if (!user) {
+      console.log(`user login failed [${boe.username}]`)
+      return res_error(Err_code.WRONG_USERNAME_OR_PASSWORD)
     }
+    console.log(`user login success [${boe.username}]`)
+    const token = crypto.randomUUID()
+    await models.user_token.set(
+      token,
+      { user_ID: user._id },
+      { expireIn: app.options.session_timeout },
+    )
+    return res_success(token)
   },
 }

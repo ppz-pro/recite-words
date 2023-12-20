@@ -47,6 +47,8 @@ Deno.serve(
       else
         return await serve_static(url.pathname)
     } catch(err) {
+      if (err instanceof Response)
+        return err
       console.error(err)
       return new Response('Unknown error', { status: 500 })
     }
