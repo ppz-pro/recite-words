@@ -18,6 +18,6 @@ const retrieve_app_config = () => {
 
   return {
     db_path,
-    session_timeout: 2 * 60 * 60 * 1000,
+    session_timeout: .5 * 60 * 60 * 1000,
   }
 }
