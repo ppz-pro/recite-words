@@ -8,9 +8,4 @@ class Collection_UUID<Record extends I_record> extends Collection<Record> {
     await super.set(uuid, data, options)
     return uuid
   }
-
-  async set(key: string, data: Record_data<Record>, options?: KV_setter_options | undefined): Promise<void> {
-    console.warn(`setting collection uuid, key: ${key}. you should use add() instead of set().`)
-    await super.set(key, data, options)
-  }
 }
