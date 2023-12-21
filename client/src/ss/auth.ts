@@ -9,6 +9,12 @@ const set_token = (token: string | null) => {
 }
 export
 const empty_token = () => set_token(null)
+export
+const logout = async () => {
+  const res = http.POST('/logout', null, get_auth_header())
+  empty_token()
+  await res
+}
 
 export
 const get_auth_header = () => {

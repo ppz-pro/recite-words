@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import { Props } from '../../../types'
-import { empty_token } from '../../../ss/auth'
+import { logout } from '../../../ss/auth'
 
 export
-const Layout: FC<Props.Child> = ({ children }) =>
+const Layout: FC<Props.Children> = ({ children }) =>
   <>
     <button
-      onClick = {empty_token}
+      onClick = {logout}
     >Logout</button>
     {children}
   </>
