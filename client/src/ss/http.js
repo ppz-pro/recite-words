@@ -22,7 +22,7 @@ const http = new Proxy({}, {
         case Err_code.TOKEN_EXPIRED:
           console.error('token expired')
           empty_token()
-          break
+          throw Error(`Token Expired`)
         default:
           if (res_body.code === Err_code.UNKNOWN)
             throw new Error(`unknown error code: ${res_body.code}`)
