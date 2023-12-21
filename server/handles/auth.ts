@@ -17,6 +17,7 @@ const logout_route: Route<Req_ctx> = {
   path: '/logout',
   handle: check_session(async ({ req, models }) => {
     const token = req.headers.get('Token') as string
+    console.log(`user logouting, token: ${token}`)
     await models.user_token.del(token)
     return res_success()
   }),
@@ -46,8 +47,8 @@ const login_route: Route<Req_ctx> = {
       console.log(`user login failed [${boe.username}]`)
       return res_error(Err_code.WRONG_USERNAME_OR_PASSWORD)
     }
-    console.log(`user login success [${boe.username}]`)
     const token = crypto.randomUUID()
+    console.log(`user login success [${boe.username}, ${token}]`)
     await models.user_token.set(
       token,
       { user_ID: user._id },

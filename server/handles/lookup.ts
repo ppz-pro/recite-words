@@ -14,8 +14,13 @@ const look_up_route: Route<Req_ctx> = {
     const word = url.searchParams.get('word')
     console.log(`${username} is looking up ${word}`)
     if (check_str(word)) {
-      const res = await fetch('https://lookup.deno.dev/lookup/learners?word=' + word) 
-      return res_success(await res.json())
+      const result = await (
+        await fetch('https://lookup.deno.dev/lookup/learners?word=' + word) 
+      ).json()
+      if (typeof result[0] == 'string')
+        return res_error(Err_code.WRONG_WORD)
+      else
+        return res_success(result)
     } else {
       console.error(`error on lookup word [${word}], no word`)
       return res_error(Err_code.UNKNOWN)

@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import { FC, useState } from 'react'
 import { lookup } from '../../../ss/lookup'
 import { useWatch } from '../../common/hooks'
-import { Paraphrase } from '../../../../../server/common_types'
+import { Paraphrase } from '../../../../../server/common/types'
 import { Paraphrase_card } from './paraphrase'
 
 interface Props {

@@ -7,4 +7,7 @@ enum Err_code {
   TOKEN_EXPIRED,
 
   UNKNOWN,
+
+  // business
+  WRONG_WORD,
 }
