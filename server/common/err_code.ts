@@ -10,4 +10,5 @@ enum Err_code {
 
   // business
   WRONG_WORD,
+  NO_PARAPHRASE,
 }

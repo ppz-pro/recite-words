@@ -1,4 +1,6 @@
 import { FC, useState } from 'react'
+import { useFlag } from '../../../lib/hooks'
+
 import { useInput } from '../../common/hooks'
 import { Login_required } from '../../cmp/login_required'
 import { Layout } from '../../cmp/layout'
@@ -8,10 +10,12 @@ export
 const Home_page: FC = () => {
   const word_input = useInput()
   const [target, set_target] = useState<null | string>(null)
+  const [flag, incr_flag] = useFlag()
   const _lookup = () => {
-    if (word_input.val.length)
+    if (word_input.val.length) {
       set_target(word_input.val)
-    else
+      incr_flag()
+    } else
       alert('no word?')
   }
   return <Layout>
@@ -22,7 +26,7 @@ const Home_page: FC = () => {
           onClick = {_lookup}
         >Search</button>
       </div>
-      {target && <Word_card word = {target} />}
+      {target && <Word_card flag = {flag} word = {target} />}
     </Login_required>
   </Layout>
 }

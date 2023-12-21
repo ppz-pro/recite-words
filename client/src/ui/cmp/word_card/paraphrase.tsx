@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Paraphrase } from '../../../../../server/common_types'
+import { Paraphrase } from '../../../../../server/common/types'
 
 interface Props {
   val: Paraphrase

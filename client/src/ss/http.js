@@ -24,7 +24,7 @@ const http = new Proxy({}, {
           empty_token()
           break
         default:
-          if (res_body.code > Err_code.UNKNOWN)
+          if (res_body.code === Err_code.UNKNOWN)
             throw new Error(`unknown error code: ${res_body.code}`)
       }
       throw new HTTP_err(res_body.code)
