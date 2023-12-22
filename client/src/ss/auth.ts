@@ -1,7 +1,7 @@
-import { Persist_store } from '../lib/store/persist'
+import { State_persist_nullable } from '../lib/store/persist'
 import { http } from './http'
 
-const token_store = Persist_store('token', null)
+const token_store = State_persist_nullable('token')
 
 const set_token = (token: string | null) => {
   // 虽然只有一行代码，“不用大括号显得好看”，但用大括号来表明“没有返回值”，能增加确定性
