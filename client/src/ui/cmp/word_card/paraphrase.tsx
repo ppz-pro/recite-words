@@ -11,7 +11,11 @@ export
 const Paraphrase_card: FC<Props> = ({ val }) => {
   const theme = useVal_theme()
   return <div css = {css({
-    backgroundColor: theme.color.fore(.1),
+    // backgroundColor: theme.color.fore(.1),
+    borderRadius: theme.size(.25),
+    padding: theme.xy(1, 2),
+    marginTop: theme.size(),
+    border: theme.border(.06),
   })}>
     <table>
       <tbody
@@ -20,6 +24,7 @@ const Paraphrase_card: FC<Props> = ({ val }) => {
             textAlign: 'left',
             fontWeight: 'normal',
             color: theme.color.fore(.66),
+            paddingRight: theme.size(),
           }
         })}
       >
