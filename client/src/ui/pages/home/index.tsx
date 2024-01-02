@@ -8,9 +8,6 @@ import { Word_card } from '../../cmp/word_card'
 
 export
 const Home_page: FC = () => {
-  const word_input = useInput()
-  const [target, set_target] = useState<null | string>(null)
-  const [flag, incr_flag] = useFlag()
   const _lookup = () => {
     if (word_input.val.length) {
       set_target(word_input.val)
@@ -18,6 +15,12 @@ const Home_page: FC = () => {
     } else
       alert('no word?')
   }
+
+  const word_input = useInput({
+    on_enter: _lookup,
+  })
+  const [target, set_target] = useState<null | string>(null)
+  const [flag, incr_flag] = useFlag()
   return <Layout>
     <Login_required>
       <div>
