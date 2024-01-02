@@ -19,6 +19,7 @@ const app: App = await calc(async()  => {
     models: {
       user: new Collection_UUID(kv, 'user'),
       user_token: new Collection(kv, 'user_token'),
+      history: new Collection_UUID(kv, 'history'),
     }
   }
 })

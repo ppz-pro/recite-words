@@ -14,10 +14,15 @@ export
 interface User_token_record extends I_record {
   user_ID: string
 }
+export
+interface History_record extends I_record {
+  word: string
+}
 
 interface Models {
   user: Collection_UUID<User_record>
   user_token: I_collection<User_token_record>
+  history: Collection_UUID<History_record>
 }
 
 export
