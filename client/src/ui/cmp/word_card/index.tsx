@@ -32,12 +32,12 @@ const Word_card: FC<Props> = ({ word, flag }) => {
           default:
             console.error(err.code)
             console.error(err)
-            alert('unknown error 1')
+            alert(`unknown error 1, code: ${err.code}`)
             return
         }
       }
       console.error(err)
-      alert('unknown error 2')
+      // alert('unknown error 2')
     }
   })
 
