@@ -20,7 +20,7 @@ type Req_method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export
 interface Route<Ctx extends Context> {
-  method: Req_method
+  method?: Req_method
   path: string
   handle: Handle<Ctx>
 }

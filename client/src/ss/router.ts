@@ -19,4 +19,5 @@ export
 const pages = {
   home: new Page('/'),
   login: new Page('/login'),
+  history: new Page('/history'),
 }

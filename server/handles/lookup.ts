@@ -1,5 +1,4 @@
-import { Route } from '../deps/simple_web_framework/router/types.ts'
-import { res_success, res_err, res_error } from '../deps/simple_web_framework/respond/mod.ts'
+import { Route, res_success, res_err, res_error } from '../deps/simple_web_framework/mod.ts'
 
 import { Err_code } from '../common/err_code.ts'
 import { Req_ctx } from '../types.ts'

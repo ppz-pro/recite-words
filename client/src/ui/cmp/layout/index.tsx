@@ -1,6 +1,8 @@
 import { FC, Fragment } from 'react'
+import { Link } from 'wouter'
 import { Props } from '../../../types'
 import { logout } from '../../../ss/auth'
+import { pages } from '../../../ss/router'
 import { Login_required } from '../login_required'
 
 interface Layout_props extends Props.Children {
@@ -14,6 +16,8 @@ const Layout: FC<Layout_props> = ({ login_required, children }) => {
     <button
       onClick = {logout}
     >Logout</button>
+    <Link href={pages.history.path}>history</Link>
+
     {children}
   </Login>
 }
