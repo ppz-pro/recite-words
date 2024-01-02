@@ -1,4 +1,3 @@
-import { get_str } from '../deps/simple_web_framework/aajv/mod.ts'
 import { Route } from '../deps/simple_web_framework/router/types.ts'
 import { res_success, res_err, res_error } from '../deps/simple_web_framework/respond/mod.ts'
 
@@ -11,9 +10,12 @@ const look_up_route: Route<Req_ctx> = {
   method: 'GET',
   path: '/lookup',
   handle: check_session(async ({ url, app }, username) => {
-    let word: string | null | boolean = url.searchParams.get('word')
+    const word = url.searchParams.get('word')
     console.log(`${username} is looking up ${word}`)
-    if ((word = get_str(word)) !== false) {
+    if (word === null || word.length === 0) {
+      console.error(`error on lookup word [${word}], no word`)
+      return res_err.bad_req() // “客户端未校验就发过来 => 客户端要改进” => 判定为 bad request
+    } else {
       const result = await (
         await fetch('https://lookup.deno.dev/lookup/learners?word=' + word) 
       ).json()
@@ -25,9 +27,6 @@ const look_up_route: Route<Req_ctx> = {
         await app.models.history.add({ word })
         return res_success(result)
       }
-    } else {
-      console.error(`error on lookup word [${word}], no word`)
-      return res_err.bad_req() // “客户端未校验就发过来 => 客户端要改进” => 判定为 bad request
     }
   })
 }
