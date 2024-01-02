@@ -2,7 +2,6 @@ import { FC, useState } from 'react'
 import { useFlag } from '../../../lib/hooks'
 
 import { useInput } from '../../common/hooks'
-import { Login_required } from '../../cmp/login_required'
 import { Layout } from '../../cmp/layout'
 import { Word_card } from '../../cmp/word_card'
 
@@ -21,15 +20,13 @@ const Home_page: FC = () => {
   })
   const [target, set_target] = useState<null | string>(null)
   const [flag, incr_flag] = useFlag()
-  return <Layout>
-    <Login_required>
-      <div>
-        {word_input.el}
-        <button
-          onClick = {_lookup}
-        >Search</button>
-      </div>
-      {target && <Word_card flag = {flag} word = {target} />}
-    </Login_required>
+  return <Layout login_required>
+    <div>
+      {word_input.el}
+      <button
+        onClick = {_lookup}
+      >Search</button>
+    </div>
+    {target && <Word_card flag = {flag} word = {target} />}
   </Layout>
 }
