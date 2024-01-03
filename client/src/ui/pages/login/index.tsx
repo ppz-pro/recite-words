@@ -13,7 +13,7 @@ const Login_page: FC = () => {
   const password_input = useInput({
     type: 'password',
   })
-  return <>
+  return <main className='container'>
     {username_input.el}
     {password_input.el}
     <button
@@ -32,5 +32,5 @@ const Login_page: FC = () => {
         }
       }}
     >Login</button>
-  </>
+  </main>
 }

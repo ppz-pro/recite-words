@@ -13,11 +13,28 @@ export
 const Layout: FC<Layout_props> = ({ login_required, children }) => {
   const Login = login_required ? Login_required : Fragment
   return <Login>
-    <button
-      onClick = {logout}
-    >Logout</button>
-    <Link href={pages.history.path}>history</Link>
+    <nav className='container'>
+      <ul>
+        <li>
+          <Link href={pages.home.path}>
+            <h1 style={{ marginBottom: 0 }}>
+              Recite Words
+            </h1>
+          </Link>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <Link href={pages.history.path}>history</Link>
+        </li>
+        <li>
+          <a onClick = {logout} href = "#">Logout</a>
+        </li>
+      </ul>
+    </nav>
 
-    {children}
+    <main className='container'>
+      {children}
+    </main>
   </Login>
 }
