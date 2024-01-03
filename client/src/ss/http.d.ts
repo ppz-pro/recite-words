@@ -3,6 +3,7 @@ type request = (url: string, data: unknown, headers?: unknown) => unknown
 interface http {
   GET: request
   POST: request
+  DELETE: request
 }
 
 export
