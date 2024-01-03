@@ -36,6 +36,7 @@ Deno.serve(
         if (handle_api)
           return await handle_api({
             url,
+            params: url.searchParams,
             req,
             app,
             models: app.models,

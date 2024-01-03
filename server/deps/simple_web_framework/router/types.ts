@@ -4,6 +4,7 @@ export
 interface Context {
   req: Request
   url: URL
+  params: URLSearchParams
 }
 
 export
