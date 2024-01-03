@@ -59,7 +59,9 @@ class Collection<Record extends I_record> implements I_collection<Record> {
       list.push(item)
 
     const result = list.map(entry => entry.value)
-    return filter ? result.filter(filter) : result
+    return (
+      filter ? result.filter(filter) : result
+    ).sort((b, a) => a.created_at.getTime() - b.created_at.getTime())
   }
 
   /** retrieve one record */

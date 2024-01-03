@@ -7,7 +7,7 @@ import { useData } from '../lib/hooks/data'
 export
 interface History_record {
   word: string
-  _id: string
+  id: string
 }
 export
 const useData_history = (deps?: DependencyList) =>

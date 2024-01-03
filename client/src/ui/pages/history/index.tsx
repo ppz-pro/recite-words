@@ -17,7 +17,7 @@ const History_page: FC = () => {
       Data = {({ data }) =>
         <ul>
           {data.map(record =>
-            <li key = {record._id}>
+            <li key = {record.id}>
               <Link href = {'/?word=' + record.word}>{record.word}</Link>
             </li>
           )}
