@@ -4,6 +4,7 @@ import { Props } from '../../../types'
 import { logout } from '../../../ss/auth'
 import { pages } from '../../../ss/router'
 import { Login_required } from '../login_required'
+import { Search_input } from './search_input'
 
 interface Layout_props extends Props.Children {
   login_required: boolean
@@ -24,6 +25,9 @@ const Layout: FC<Layout_props> = ({ login_required, children }) => {
         </li>
       </ul>
       <ul>
+        <li>
+          <Search_input />
+        </li>
         <li>
           <Link href={pages.history.path}>history</Link>
         </li>

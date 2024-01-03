@@ -19,16 +19,14 @@ const State = <Val>(val: Val) => {
   const get = () => val
 
   const useVal = () => useSyncExternalStore<Val>(subscribe, get)
+  const useState: () => [Val, typeof set] = () => [useVal(), set]
   return  {
     get,
     set,
     useVal,
     useSet: () => set,
     subscribe,
-    useState: () => [
-      useVal(),
-      set,
-    ],
+    useState,
   }
 }
 
