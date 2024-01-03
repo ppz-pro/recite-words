@@ -47,13 +47,11 @@ const login_route: Route<Req_ctx> = {
       console.log(`user login failed [${boe.username}]`)
       return res_error(Err_code.WRONG_USERNAME_OR_PASSWORD)
     }
-    const token = crypto.randomUUID()
-    console.log(`user login success [${boe.username}, ${token}]`)
-    await models.user_token.set(
-      token,
-      { user_ID: user._id },
+    const token = await models.user_token.add(
+      { user_ID: user.id },
       { expireIn: app.options.session_timeout },
     )
+    console.log(`user login success [${boe.username}, ${token}]`)
     return res_success(token)
   },
 }

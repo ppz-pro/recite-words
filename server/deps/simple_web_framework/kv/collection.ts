@@ -7,28 +7,48 @@ class Collection<Record extends I_record> implements I_collection<Record> {
     private name: string,
   ) {}
 
-  private k(key: string) {
-    return [this.name, key]
+  private k(id: string) {
+    return [this.name, id]
   }
 
-  async get(key: string) {
-    const entry = await this.kv.get<Record>(this.k(key))
+  /** retrieve a record by id */
+  async get(id: string) {
+    const entry = await this.kv.get<Record>(this.k(id))
     return entry.value
   }
 
-  async set(key: string, data: Record_data<Record>, options?: KV_setter_options) {
-    const record = {
-      _id: key,
-      ...data,
-    }
-    console.debug('setting kv', this.k(key), record, options)
-    await this.kv.set(this.k(key), record, options)
+  private async _set(record: Record, options?: KV_setter_options) {
+    await this.kv.set(this.k(record.id), record, options)
   }
 
+  /** update the record */
+  async set(record: Record, options?: KV_setter_options) {
+    record.updated_at = new Date()
+    await this._set(record, options)
+  }
+
+  /** insert a new record */
+  async add(data: Record_data<Record>, options?: KV_setter_options): Promise<string> {
+    const uuid = crypto.randomUUID()
+    const now = new Date()
+    await this._set(
+      {
+        id: uuid,
+        created_at: now,
+        updated_at: now,
+        ...data,
+      } as Record, // 这里似乎是 ts 的 bug?
+      options,
+    )
+    return uuid
+  }
+
+  /** delete one record */
   async del(key: string) {
     await this.kv.delete(this.k(key))
   }
 
+  /** retrieve all records */
   async all(filter?: (record: Record) => boolean) {
     const res = this.kv.list<Record>({
       prefix: [this.name]
@@ -42,6 +62,7 @@ class Collection<Record extends I_record> implements I_collection<Record> {
     return filter ? result.filter(filter) : result
   }
 
+  /** retrieve one record */
   async one(find: (record: Record) => boolean): Promise<Record | null> {
     return (await this.all(find))[0] || null
   }

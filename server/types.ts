@@ -1,7 +1,6 @@
 import {
   I_record,
   I_collection,
-  Collection_UUID,
   Context,
 } from './deps/simple_web_framework/mod.ts'
 
@@ -20,9 +19,9 @@ interface History_record extends I_record {
 }
 
 interface Models {
-  user: Collection_UUID<User_record>
+  user: I_collection<User_record>
   user_token: I_collection<User_token_record>
-  history: Collection_UUID<History_record>
+  history: I_collection<History_record>
 }
 
 export

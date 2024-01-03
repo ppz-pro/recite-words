@@ -14,7 +14,7 @@ const check_session: Middleware<Req_ctx, string> = (handle) =>
     if (token_record === null)
       throw res_error(Err_code.TOKEN_EXPIRED)
 
-    await ctx.models.user_token.set(token, token_record, {
+    await ctx.models.user_token.set(token_record, {
       expireIn: ctx.app.options.session_timeout,
     })
     return handle(ctx, token_record.user_ID)
