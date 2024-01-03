@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { useFlag } from '../../../lib/hooks'
+import { useFlag, useMount } from '../../../lib/hooks'
 
 import { useInput } from '../../common/hooks'
 import { Layout } from '../../cmp/layout'
@@ -17,6 +17,14 @@ const Home_page: FC = () => {
 
   const word_input = useInput({
     on_enter: _lookup,
+  })
+  useMount(() => {
+    const query = new URLSearchParams(location.search)
+    const word = query.get('word')
+    if (word !== null) {
+      word_input.set(word)
+      set_target(word)
+    }
   })
   const [target, set_target] = useState<null | string>(null)
   const [flag, incr_flag] = useFlag()
