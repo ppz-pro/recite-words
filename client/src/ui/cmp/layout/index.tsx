@@ -1,5 +1,8 @@
 import { FC, Fragment } from 'react'
 import { Link } from 'wouter'
+import { css } from '@emotion/react'
+
+import { mq } from '../../common/media_query'
 import { Props } from '../../../types'
 import { logout } from '../../../ss/auth'
 import { pages } from '../../../ss/router'
@@ -15,7 +18,16 @@ const Layout: FC<Layout_props> = ({ login_required, children }) => {
   const Login = login_required ? Login_required : Fragment
   return <Login>
     <nav className='container'>
-      <ul>
+      <ul
+        css = {css({
+          [mq.sm]: {
+            display: 'none',
+          },
+          h1: {
+            fontSize: '1.2rem',
+          },
+        })}
+      >
         <li>
           <Link href={pages.home.path}>
             <h1 style={{ marginBottom: 0 }}>
