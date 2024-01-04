@@ -3,8 +3,8 @@ import { retrieve_app_config } from '../app_config.ts'
 import { User_record } from '../types.ts'
 
 // 用户名密码不要提交 git
-// const username = ''
-// const password = ''
+const username = ''
+const password = ''
 
 try {
   const kv = await Deno.openKv(retrieve_app_config().db_path)

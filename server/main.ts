@@ -25,6 +25,8 @@ const app: App = await calc(async()  => {
   }
 })
 
+console.log('debug users', await app.models.user.all())
+
 Deno.serve(
   {
     port: 10002,
