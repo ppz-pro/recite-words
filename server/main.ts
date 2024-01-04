@@ -20,6 +20,7 @@ const app: App = await calc(async()  => {
       user: new Collection(kv, 'user'),
       user_token: new Collection(kv, 'user_token'),
       history: new Collection(kv, 'history'),
+      vocabulary: new Collection(kv, 'vocabulary'),
     }
   }
 })

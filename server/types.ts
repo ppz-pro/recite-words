@@ -17,11 +17,18 @@ export
 interface History_record extends I_record {
   word: string
 }
+export
+interface Vocabulary_record extends I_record {
+  word: string
+  /** 记住的次数 */
+  remember: number
+}
 
 interface Models {
   user: I_collection<User_record>
   user_token: I_collection<User_token_record>
   history: I_collection<History_record>
+  vocabulary: I_collection<Vocabulary_record>
 }
 
 export
