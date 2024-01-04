@@ -5,8 +5,8 @@ try {
   const kv = await Deno.openKv(`https://api.deno.com/databases/${uuid}/connect`)
   const res = kv.list({ prefix: [] })
 
-  for await (const kv of res)
-    console.log(kv)
+  for await (const entry of res)
+    console.log(entry)
 } catch(err) {
   console.error(err)
 }

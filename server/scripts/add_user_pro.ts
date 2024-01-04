@@ -1,4 +1,5 @@
 import { Collection } from '../deps/simple_web_framework/kv/collection.ts'
+import { User_record } from '../types.ts'
 
 const username = ''
 const password = ''
@@ -10,7 +11,8 @@ try {
   const kv = await Deno.openKv(`https://api.deno.com/databases/${uuid}/connect`)
   const user_coll = new Collection<User_record>(kv, 'user')
 
-  await user_coll.set(username, {
+  await user_coll.add({
+    username,
     password,
   })
 } catch(err) {
