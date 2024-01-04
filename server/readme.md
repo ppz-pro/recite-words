@@ -1,4 +1,9 @@
 # Server
+## Deprecated
++ deno kv 功能太弱
+
+未知问题：用 cli 添加了用户，在生产环境读取不到。
+
 ## Structure
 ##### common
 前后端公用的类型、常量
