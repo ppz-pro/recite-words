@@ -1,4 +1,6 @@
 import { FC } from 'react'
+import { css } from '@emotion/react'
+
 import { Err_code } from '../../../../../server/common/err_code'
 import { useInput } from '../../common/hooks'
 import { login } from '../../../ss/auth'
@@ -14,23 +16,25 @@ const Login_page: FC = () => {
     type: 'password',
   })
   return <main className='container'>
-    {username_input.el}
-    {password_input.el}
-    <button
-      onClick = {async () => {
-        try {
-          await login(username_input.val, password_input.val)
-          nav_home()
-        } catch(err) {
-          if (err instanceof HTTP_err) {
-            if (err.code == Err_code.WRONG_USERNAME_OR_PASSWORD)
-              alert('wrong username or password')
-            else
+    <div css = {css({ maxWidth: 500, margin: '20vh auto 0' })}>
+      {username_input.el}
+      {password_input.el}
+      <button
+        onClick = {async () => {
+          try {
+            await login(username_input.val, password_input.val)
+            nav_home()
+          } catch(err) {
+            if (err instanceof HTTP_err) {
+              if (err.code == Err_code.WRONG_USERNAME_OR_PASSWORD)
+                alert('wrong username or password')
+              else
+                throw err
+            } else
               throw err
-          } else
-            throw err
-        }
-      }}
-    >Login</button>
+          }
+        }}
+      >Login</button>
+    </div>
   </main>
 }

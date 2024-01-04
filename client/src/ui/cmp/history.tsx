@@ -5,6 +5,7 @@ import { chunksOf } from 'fp-ts/Array'
 import { useData_history, History_record, drop_history } from '../../ss/history'
 import { Result_view } from './result_view'
 import { useSet_lookup_target } from '../../ss/lookup'
+import { Add_vocabulary } from './add_vocabulary'
 
 export
 const History: FC = () => {
@@ -58,14 +59,7 @@ const Item: FC<Item_props> = ({ reload, record }) => {
     >{record.word}</a>
 
     <span>
-      <a
-        href = '#'
-        className = 'secondary'
-        onClick = {async () => {
-          await drop_history(record.id)
-          reload()
-        }}
-      >+</a>
+      <Add_vocabulary word={record.word} />
       <a
         href = '#'
         className = 'secondary'
