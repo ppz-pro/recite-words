@@ -23,8 +23,12 @@ const History: FC = () => {
             'div:not(:empty)': {
               display: 'flex',
               justifyContent: 'space-between',
-              padding: '0 1rem',
-              borderBottom: '1px solid var(--table-border-color)'
+              padding: '0 calc(var(--spacing) /2)',
+              borderBottom: '1px solid var(--table-border-color)',
+              a: {
+                padding: 'calc(var(--spacing) /2)',
+                display: 'inline-block',
+              },
             }
           })}
         >
