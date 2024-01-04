@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import { FC, useState } from 'react'
 
 import { Paraphrase } from '../../../../../server/common/types'
@@ -41,11 +40,7 @@ const Word_card: FC<Props> = ({ word, flag }) => {
     }
   })
 
-  return <div
-    css = {css`
-  
-    `}
-  >
+  return <div>
     <h3>{word}</h3>
     {paraphrases
       ? paraphrases.map(p =>
