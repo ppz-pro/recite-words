@@ -16,7 +16,7 @@ interface useData_ret<Data> {
 }
 
 export
-function useData<Data>(props: useData_props<Data>): useData_ret<Data> {
+const useData = <Data>(props: useData_props<Data>): useData_ret<Data> => {
   const deps = props.deps || []
 
   const [flag, reload] = useFlag()

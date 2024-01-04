@@ -1,2 +1,2 @@
 export
-const Loading = () => <div>loading...</div>
+const Loading = () => <p aria-busy="true"></p>

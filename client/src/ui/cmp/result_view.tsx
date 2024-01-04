@@ -12,7 +12,7 @@ interface Props<Data, Error> {
 }
 
 export
-function Result_view<Data, Error>(props: Props<Data, Error>) {
+function Result_view<Data, Error = unknown>(props: Props<Data, Error>) {
   const Ld = props.Loading || Loading
   const Err = props.Error || (
     err => <div style = {{ color: 'red' }}>Error: {String(err)}</div>
